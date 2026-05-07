@@ -17,16 +17,23 @@
 
 Phase 0 (Planning) complete. `docs/PLANNING.md` is the master plan. ADRs 001-004 documented in `docs/decisions/`. Architecture, schema, agent responsibilities, eval framework, and risk register all locked.
 
+Prerequisites verified and installed (2026-05-08):
+- Python 3.11.9 installed via pyenv, pinned to project via `.python-version`
+- Node.js 20.20.2 installed via Homebrew, added to PATH in `.zshrc`
+- Ollama 0.23.1 installed and running as background service
+- `qwen2.5:7b` (4.7GB) pulled and smoke-tested
+
+Git repo initialized, initial commit on `main` branch.
+
 ## Next Concrete Step
 
-Set up local development environment:
+Scaffold the project skeleton:
 
-1. Verify Python 3.11+ installed
-2. Verify Node.js 20+ installed
-3. Install Ollama and pull `qwen2.5:7b`
-4. Initialize repo structure (backend skeleton, frontend skeleton)
-5. Initialize git, commit baseline
-6. Create `.env` from `.env.example`
+1. Create backend directory with `pyproject.toml` and virtual environment
+2. Create frontend directory with Next.js 14 (App Router) + Tailwind
+3. Create `data/` directory structure
+4. Populate `.env` from `.env.example`
+5. Commit skeleton
 
 ## Phase Checklist
 
@@ -43,15 +50,16 @@ Set up local development environment:
 - [x] ADRs 001-004 written
 
 ### Phase 1 — Environment Setup (current)
-- [ ] Python 3.11+ verified
-- [ ] Node.js 20+ verified
-- [ ] Ollama installed
-- [ ] `qwen2.5:7b` pulled and tested
+- [x] Python 3.11+ verified (3.11.9 via pyenv)
+- [x] Node.js 20+ verified (20.20.2 via Homebrew)
+- [x] Ollama installed (0.23.1)
+- [x] `qwen2.5:7b` pulled and tested
+- [x] Git initialized
+- [x] `.env.example` populated
+- [x] First commit pushed
 - [ ] Backend dir scaffolded with `pyproject.toml`
 - [ ] Frontend dir scaffolded with Next.js
-- [ ] Git initialized
-- [ ] `.env.example` populated
-- [ ] First commit pushed
+- [ ] `.env` created from `.env.example`
 
 ### Phase 2 — Backend Skeleton
 - [ ] FastAPI app with /health endpoint
