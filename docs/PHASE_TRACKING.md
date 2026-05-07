@@ -7,11 +7,11 @@
 
 ## Current Phase
 
-**Phase 1 — Environment Setup**
+**Phase 2 — Backend Skeleton**
 
 ## Status
 
-🟡 In Progress
+✅ Complete
 
 ## Last Session Summary
 
@@ -57,9 +57,9 @@ Scaffold the project skeleton:
 - [x] Git initialized
 - [x] `.env.example` populated
 - [x] First commit pushed
-- [ ] Backend dir scaffolded with `pyproject.toml`
-- [ ] Frontend dir scaffolded with Next.js
-- [ ] `.env` created from `.env.example`
+- [x] Backend dir scaffolded with `pyproject.toml`
+- [x] Frontend dir scaffolded with Next.js
+- [x] `.env` created from `.env.example`
 
 ### Phase 2 — Backend Skeleton
 - [ ] FastAPI app with /health endpoint
