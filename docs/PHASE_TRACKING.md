@@ -7,7 +7,7 @@
 
 ## Current Phase
 
-**Phase 3 — LLM Wrapper + Cache**
+**Phase 4 — Agent System**
 
 ## Status
 
@@ -27,12 +27,13 @@ Git repo initialized, initial commit on `main` branch.
 
 ## Next Concrete Step
 
-Phase 3 — LLM Wrapper + Cache:
+Phase 4 — Agent System (Financial agent first, end-to-end):
 
-1. `app/llm/client.py` — async Ollama client wrapper (single `complete()` function)
-2. `app/llm/cache.py` — disk cache keyed by SHA-256(prompt + model)
-3. `app/llm/schemas.py` — Pydantic base schema for structured LLM output
-4. Unit tests for cache hit/miss and Pydantic parse/retry logic
+1. `app/agents/base.py` — abstract Agent class all agents inherit from
+2. `app/sources/bse.py` — fetch BSE filings + yfinance data for Indian stocks
+3. `app/sources/wikipedia.py` — fetch company Wikipedia summary
+4. `app/agents/financial.py` — Financial agent end-to-end with citations
+5. Run Financial agent on Reliance Industries, inspect Evidence + Findings
 
 ## Phase Checklist
 
@@ -68,11 +69,12 @@ Phase 3 — LLM Wrapper + Cache:
 - [x] Auto-reload working (uvicorn --reload)
 
 ### Phase 3 — LLM Wrapper + Cache
-- [ ] Ollama client wrapper
-- [ ] Disk cache (content-addressed)
-- [ ] Pydantic structured output validation
-- [ ] Retry-once on JSON failure
-- [ ] Unit tests on cache + parsing
+- [x] Ollama client wrapper (app/llm/client.py)
+- [x] Disk cache content-addressed by SHA-256 (app/llm/cache.py)
+- [x] Pydantic structured output validation (app/llm/schemas.py)
+- [x] Retry-once on JSON failure with schema in corrective prompt
+- [x] 9 unit tests — 9 passed (cache + parse/retry logic)
+- [x] Live smoke test: Reliance Industries — 6s first call, 0.000s cached
 
 ### Phase 4 — Agent System
 - [ ] Agent base class

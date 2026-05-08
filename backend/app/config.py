@@ -1,4 +1,8 @@
+from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+# backend/app/config.py → go up three levels to reach the project root (meridian/)
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
 
 class Settings(BaseSettings):
@@ -37,7 +41,7 @@ class Settings(BaseSettings):
     # Caching
     cache_llm_calls: bool = True
     cache_source_fetches: bool = True
-    cache_dir: str = "./data/cache"
+    cache_dir: str = str(_PROJECT_ROOT / "data" / "cache")
 
     # Data sources
     newsapi_key: str = ""
