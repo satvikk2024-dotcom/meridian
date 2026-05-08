@@ -27,11 +27,10 @@ Git repo initialized, initial commit on `main` branch.
 
 ## Next Concrete Step
 
-Phase 6 — Critic Agent:
-1. `app/agents/critic.py` — takes all 4 AgentResults, scores each finding for citation coverage
-2. Batch scoring: for each finding, check if a citation exists that supports it
-3. Flag findings with no supporting citation as potential hallucinations
-4. Add critic output to the run_complete SSE event
+Phase 7 — Synthesizer:
+1. `app/synthesizer/memo.py` — takes all AgentResults + CriticResult, assembles a markdown memo
+2. `app/synthesizer/templates.py` — memo template with sections: Executive Summary, Financial Health, Market Position, Leadership, Sentiment, Risk Summary
+3. Add `memo` field to run_complete SSE event
 
 ## Phase Checklist
 
@@ -88,8 +87,11 @@ Phase 6 — Critic Agent:
 - [x] GET /api/runs/stream wired into FastAPI, verified over HTTP
 
 ### Phase 6 — Critic Agent
-- [ ] Batch scoring
-- [ ] Threshold-based flagging
+- [x] AgentCriticOutput: flat-list schema (supported/partially_supported/unsupported)
+- [x] Batch scoring: 4 critic LLM calls in parallel (one per agent)
+- [x] Hallucination rate computed across all findings
+- [x] critic_done SSE event emitted after agents, before run_complete
+- [x] Verified: 33% hallucination rate on Reliance run (correctly flags confidence fields)
 
 ### Phase 7 — Synthesizer
 - [ ] Memo template
