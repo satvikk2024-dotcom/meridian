@@ -7,7 +7,7 @@
 
 ## Current Phase
 
-**Phase 2 — Backend Skeleton**
+**Phase 3 — LLM Wrapper + Cache**
 
 ## Status
 
@@ -27,13 +27,12 @@ Git repo initialized, initial commit on `main` branch.
 
 ## Next Concrete Step
 
-Scaffold the project skeleton:
+Phase 3 — LLM Wrapper + Cache:
 
-1. Create backend directory with `pyproject.toml` and virtual environment
-2. Create frontend directory with Next.js 14 (App Router) + Tailwind
-3. Create `data/` directory structure
-4. Populate `.env` from `.env.example`
-5. Commit skeleton
+1. `app/llm/client.py` — async Ollama client wrapper (single `complete()` function)
+2. `app/llm/cache.py` — disk cache keyed by SHA-256(prompt + model)
+3. `app/llm/schemas.py` — Pydantic base schema for structured LLM output
+4. Unit tests for cache hit/miss and Pydantic parse/retry logic
 
 ## Phase Checklist
 
@@ -62,11 +61,11 @@ Scaffold the project skeleton:
 - [x] `.env` created from `.env.example`
 
 ### Phase 2 — Backend Skeleton
-- [ ] FastAPI app with /health endpoint
-- [ ] Config loading from env
-- [ ] Structured logging
-- [ ] SSE proof-of-concept route
-- [ ] Auto-reload working
+- [x] FastAPI app with /health endpoint
+- [x] Config loading from env (pydantic-settings)
+- [x] Structured logging (structlog)
+- [x] SSE proof-of-concept route (streams 14 fake events end-to-end)
+- [x] Auto-reload working (uvicorn --reload)
 
 ### Phase 3 — LLM Wrapper + Cache
 - [ ] Ollama client wrapper
