@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app import logging as app_logging
 from app.api.events import router as events_router
+from app.api.runs import router as runs_router
 
 logger = structlog.get_logger()
 
@@ -35,6 +36,7 @@ app.add_middleware(
 )
 
 app.include_router(events_router, prefix="/api")
+app.include_router(runs_router, prefix="/api")
 
 
 @app.get("/health")

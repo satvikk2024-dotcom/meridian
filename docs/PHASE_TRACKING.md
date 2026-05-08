@@ -27,11 +27,11 @@ Git repo initialized, initial commit on `main` branch.
 
 ## Next Concrete Step
 
-Phase 5 — Orchestrator:
-
-1. `app/orchestrator/planner.py` — decide which agents to run for a given company
-2. `app/orchestrator/runner.py` — run all agents in parallel via asyncio.gather, emit SSE progress events
-3. Wire up the `/api/runs` FastAPI route to trigger a full run end-to-end
+Phase 6 — Critic Agent:
+1. `app/agents/critic.py` — takes all 4 AgentResults, scores each finding for citation coverage
+2. Batch scoring: for each finding, check if a citation exists that supports it
+3. Flag findings with no supporting citation as potential hallucinations
+4. Add critic output to the run_complete SSE event
 
 ## Phase Checklist
 
@@ -82,9 +82,10 @@ Phase 5 — Orchestrator:
 - [x] Customer Sentiment agent (Reddit r/IndiaInvestments + r/IndianStockMarket)
 
 ### Phase 5 — Orchestrator
-- [ ] Planner
-- [ ] Async parallel runner
-- [ ] Progress events
+- [x] Planner (agents_for — returns all 4 agents, extensible)
+- [x] Async parallel runner (asyncio.Queue fan-out, SSE event generator)
+- [x] Progress events (run_started, agent_started×4, agent_done×4, run_complete)
+- [x] GET /api/runs/stream wired into FastAPI, verified over HTTP
 
 ### Phase 6 — Critic Agent
 - [ ] Batch scoring
