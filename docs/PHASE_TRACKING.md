@@ -27,13 +27,13 @@ Git repo initialized, initial commit on `main` branch.
 
 ## Next Concrete Step
 
-Phase 4 — Agent System (Financial agent first, end-to-end):
+Phase 4 continued — remaining three agents (Market, People, Customer Sentiment):
 
-1. `app/agents/base.py` — abstract Agent class all agents inherit from
-2. `app/sources/bse.py` — fetch BSE filings + yfinance data for Indian stocks
-3. `app/sources/wikipedia.py` — fetch company Wikipedia summary
-4. `app/agents/financial.py` — Financial agent end-to-end with citations
-5. Run Financial agent on Reliance Industries, inspect Evidence + Findings
+1. `app/agents/market.py` — sector/competitive position analysis
+2. `app/sources/news.py` — recent news headlines via a free API or RSS
+3. `app/agents/people.py` — leadership background
+4. `app/sources/reddit.py` — r/IndiaInvestments sentiment
+5. `app/agents/customer.py` — customer sentiment agent
 
 ## Phase Checklist
 
@@ -77,8 +77,8 @@ Phase 4 — Agent System (Financial agent first, end-to-end):
 - [x] Live smoke test: Reliance Industries — 6s first call, 0.000s cached
 
 ### Phase 4 — Agent System
-- [ ] Agent base class
-- [ ] Financial agent end-to-end (with citations)
+- [x] Agent base class (AgentResult, Citation, Agent ABC)
+- [x] Financial agent end-to-end (yfinance + Wikipedia + LLM findings + citations)
 - [ ] Market agent
 - [ ] People agent
 - [ ] Customer Sentiment agent

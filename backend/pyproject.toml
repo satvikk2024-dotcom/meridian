@@ -29,6 +29,10 @@ dependencies = [
 
     # Structured logging
     "structlog>=24.0",
+
+    # Data sources for Indian market
+    "yfinance>=0.2",                   # stock data with .NS / .BO suffix support
+    "wikipedia-api>=0.7",              # Wikipedia article fetcher (no API key needed)
 ]
 
 [project.optional-dependencies]
