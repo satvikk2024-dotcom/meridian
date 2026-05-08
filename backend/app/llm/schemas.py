@@ -24,6 +24,32 @@ class LLMOutputBase(BaseModel):
     pass
 
 
+def _build_example_template(model_class: Type[T]) -> str:
+    """
+    Build a simple JSON template from a Pydantic model.
+
+    Shows field names with placeholder values that match the field type
+    (e.g. "<string>", ["<string>", ...], 0.0 for float).
+    Small models follow concrete examples far better than abstract schemas.
+    """
+    schema = model_class.model_json_schema()
+    props = schema.get("properties", {})
+    example: dict = {}
+    for field_name, field_info in props.items():
+        t = field_info.get("type")
+        items = field_info.get("items", {})
+        if t == "array":
+            item_type = items.get("type", "string")
+            example[field_name] = [f"<{item_type}>"]
+        elif t == "number" or t == "integer":
+            example[field_name] = 0.0 if t == "number" else 0
+        elif t == "boolean":
+            example[field_name] = False
+        else:
+            example[field_name] = f"<{field_info.get('description', 'string')}>"
+    return json.dumps(example, indent=2)
+
+
 async def parse_response(
     model_class: Type[T],
     prompt: str,
@@ -53,13 +79,16 @@ async def parse_response(
             error=str(first_err)[:120],
         )
 
-    # Build a corrective prompt that shows the model exactly what schema to match.
-    schema = json.dumps(model_class.model_json_schema(), indent=2)
+    # Build a corrective prompt using a concrete example template.
+    # We avoid dumping the raw JSON schema because small models (qwen2.5:7b) confuse
+    # schema annotations (description/type) with the actual output values they should write.
+    example = _build_example_template(model_class)
     retry_prompt = (
         f"{prompt}\n\n"
-        f"IMPORTANT: Your previous response could not be parsed as valid JSON.\n"
-        f"You MUST respond with a JSON object matching this exact schema:\n"
-        f"{schema}\n"
+        f"IMPORTANT: Your previous response could not be parsed. "
+        f"You MUST respond with a JSON object that looks EXACTLY like this template "
+        f"(replace placeholder values with real content):\n"
+        f"{example}\n"
         f"Respond with JSON only. No explanation, no markdown, no code fences."
     )
 

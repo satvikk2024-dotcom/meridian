@@ -11,7 +11,7 @@
 
 ## Status
 
-✅ Complete
+✅ Complete — all 4 agents + base class + sources
 
 ## Last Session Summary
 
@@ -27,13 +27,11 @@ Git repo initialized, initial commit on `main` branch.
 
 ## Next Concrete Step
 
-Phase 4 continued — remaining three agents (Market, People, Customer Sentiment):
+Phase 5 — Orchestrator:
 
-1. `app/agents/market.py` — sector/competitive position analysis
-2. `app/sources/news.py` — recent news headlines via a free API or RSS
-3. `app/agents/people.py` — leadership background
-4. `app/sources/reddit.py` — r/IndiaInvestments sentiment
-5. `app/agents/customer.py` — customer sentiment agent
+1. `app/orchestrator/planner.py` — decide which agents to run for a given company
+2. `app/orchestrator/runner.py` — run all agents in parallel via asyncio.gather, emit SSE progress events
+3. Wire up the `/api/runs` FastAPI route to trigger a full run end-to-end
 
 ## Phase Checklist
 
@@ -79,9 +77,9 @@ Phase 4 continued — remaining three agents (Market, People, Customer Sentiment
 ### Phase 4 — Agent System
 - [x] Agent base class (AgentResult, Citation, Agent ABC)
 - [x] Financial agent end-to-end (yfinance + Wikipedia + LLM findings + citations)
-- [ ] Market agent
-- [ ] People agent
-- [ ] Customer Sentiment agent
+- [x] Market agent (price momentum, valuation, sector position)
+- [x] People agent (yfinance officers + Wikipedia context)
+- [x] Customer Sentiment agent (Reddit r/IndiaInvestments + r/IndianStockMarket)
 
 ### Phase 5 — Orchestrator
 - [ ] Planner
