@@ -109,7 +109,7 @@ Phase 8 — Frontend (Next.js):
 - [x] M1: runs/[id]/page.tsx — 3-column CSS grid scaffold (agents-panel, main-panel, context-rail, event-log)
 - [x] M1: StatusBadge — 5 states with pulse animation
 - [x] M1: SourceIcon — yfinance, wikipedia, reddit, github, news
-- [ ] M2: Landing page + RunForm
+- [x] M2: Landing page + RunForm + lib/api.ts stub
 - [ ] M3: Run page header + AgentsPanel + SSE hook
 - [ ] M4: Memo tab + CitationCard
 - [ ] M5: Evidence tab
