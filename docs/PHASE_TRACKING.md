@@ -27,10 +27,11 @@ Git repo initialized, initial commit on `main` branch.
 
 ## Next Concrete Step
 
-Phase 7 — Synthesizer:
-1. `app/synthesizer/memo.py` — takes all AgentResults + CriticResult, assembles a markdown memo
-2. `app/synthesizer/templates.py` — memo template with sections: Executive Summary, Financial Health, Market Position, Leadership, Sentiment, Risk Summary
-3. Add `memo` field to run_complete SSE event
+Phase 8 — Frontend (Next.js):
+1. `frontend/app/page.tsx` — run form (company name + ticker input)
+2. `frontend/components/ProgressFeed.tsx` — SSE consumer showing live agent progress
+3. `frontend/components/MemoViewer.tsx` — renders the markdown memo with citation links
+4. `frontend/lib/api.ts` — EventSource wrapper for the SSE stream
 
 ## Phase Checklist
 
@@ -94,9 +95,12 @@ Phase 7 — Synthesizer:
 - [x] Verified: 33% hallucination rate on Reliance run (correctly flags confidence fields)
 
 ### Phase 7 — Synthesizer
-- [ ] Memo template
-- [ ] Section generation
-- [ ] Citation linking
+- [x] templates.py: Section definitions + FIELD_LABELS mapping
+- [x] memo.py: build_memo() assembles full markdown from AgentResults + CriticResult
+- [x] Critic flags rendered inline next to flagged findings
+- [x] Risk Summary aggregates risks across all agents
+- [x] Citations section with deduplicated, linked sources
+- [x] memo field added to run_complete SSE event
 
 ### Phase 8 — Frontend
 - [ ] Run form

@@ -25,6 +25,7 @@ import structlog
 from app.agents.base import Agent, AgentResult
 from app.agents.critic import run_critic
 from app.orchestrator import planner
+from app.synthesizer.memo import build_memo
 
 logger = structlog.get_logger()
 
@@ -95,6 +96,9 @@ async def run_all(company: str, ticker: str) -> AsyncGenerator[str, None]:
         ],
     })
 
+    # Synthesize the final memo from all results + critic scores
+    memo = build_memo(company, ticker, successful, critic_result)
+
     duration = round(time.perf_counter() - start, 2)
     logger.info("orchestrator_run_complete", company=company, duration_s=duration,
                 failed=failed, hallucination_rate=critic_result.hallucination_rate)
@@ -105,4 +109,5 @@ async def run_all(company: str, ticker: str) -> AsyncGenerator[str, None]:
         "failed_agents": failed,
         "agent_count": len(agents),
         "hallucination_rate": critic_result.hallucination_rate,
+        "memo": memo,
     })
