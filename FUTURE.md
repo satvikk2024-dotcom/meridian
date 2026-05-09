@@ -16,8 +16,34 @@
 
 ## Post-MVP Ideas
 
-_Nothing parked yet. When ideas come up that don't fit the MVP, add them here with a one-line
-rationale for why they're "later, not now."_
+- Deeper customer sentiment sources
+  - Why later: We don't know yet if the current sources are the bottleneck.
+    Phase 9 evals will tell us. Adding sources blindly = wasted work.
+  - When relevant: After eval shows customer agent has low coverage or accuracy.
+
+- Deeper management/people research
+  - Why later: Same as above. Eval first.
+
+- Temporal relevance scoring (recency weighting)
+  - Why later: Real feature, but adds a scoring layer to every agent.
+    Belongs in v2 after baseline works.
+  - When relevant: After deploy, when users complain about stale info.
+
+- Multi-user concurrency hardening
+  - Why later: We have zero users. Postgres + connection pooling
+    is a Phase 12 problem. SQLite with WAL mode handles surprising
+    amounts of read traffic.
+  - When relevant: When deploy actually has concurrent traffic.
+
+- PDF / DOCX export
+  - Why later: web view is sufficient for the demo; PDF gen is fiddly
+  - When relevant: once we have actual users requesting it
+  - Estimated effort: small (using `weasyprint` or similar)
+
+- Industry-specific memo templates
+  - Why later: one good template proves the architecture; multiple split focus
+  - When relevant: actual user demand from a specific vertical
+  - Estimated effort: medium (template engine refactor)
 
 ### Template
 

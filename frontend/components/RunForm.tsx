@@ -10,7 +10,7 @@ const DEMO_COMPANIES: { name: string; ticker: string }[] = [
   { name: "TCS",                 ticker: "TCS.NS"      },
   { name: "HDFC Bank",           ticker: "HDFCBANK.NS" },
   { name: "Infosys",             ticker: "INFY.NS"     },
-  { name: "Zomato",              ticker: "ZOMATO.NS"   },
+  { name: "ITC",                  ticker: "ITC.NS"      },
   { name: "Wipro",               ticker: "WIPRO.NS"    },
 ];
 

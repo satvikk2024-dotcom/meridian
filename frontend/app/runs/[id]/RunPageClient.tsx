@@ -4,6 +4,9 @@ import { useState } from "react";
 import { useRunEvents } from "@/lib/sse";
 import RunHeader from "@/components/RunHeader";
 import AgentsPanel from "@/components/AgentsPanel";
+import MemoTabs from "@/components/MemoTabs";
+import EventLog from "@/components/EventLog";
+import ContextRail from "@/components/ContextRail";
 
 interface RunPageClientProps {
   company: string;
@@ -80,48 +83,57 @@ export default function RunPageClient({ company, ticker }: RunPageClientProps) {
         />
       </div>
 
-      {/* Center — memo / evidence / trace (M4) */}
+      {/* Center — memo / evidence / trace */}
       <div
         style={{ gridArea: "main-panel" }}
-        className="flex items-center justify-center"
+        className="overflow-hidden"
       >
-        <span className="font-mono text-fg-muted" style={{ fontSize: 11 }}>
-          {state.status === "complete"
-            ? "memo ready — coming in M4"
-            : state.status === "running"
-            ? "agents running…"
-            : "waiting to start"}
-        </span>
+        {state.error ? (
+          <div className="flex h-full flex-col items-center justify-center gap-3 px-8 text-center">
+            <p className="font-mono text-danger" style={{ fontSize: 13 }}>
+              Connection lost
+            </p>
+            <p className="font-mono text-fg-muted" style={{ fontSize: 11 }}>
+              {state.error}
+            </p>
+            <a
+              href="/"
+              className="mt-2 px-3 py-1.5 rounded font-mono border
+                bg-bg-elevated border-border-default text-fg-secondary
+                hover:border-accent hover:text-fg-primary transition-colors"
+              style={{ fontSize: 12 }}
+            >
+              ← New run
+            </a>
+          </div>
+        ) : (
+          <MemoTabs
+            memo={state.memo}
+            agents={state.agents}
+            criticResult={state.criticResult}
+            events={state.events}
+          />
+        )}
       </div>
 
-      {/* Right rail — context (M8) */}
+      {/* Right rail — stock snapshot */}
       <div
         style={{ gridArea: "context-rail" }}
-        className="border-l border-border-subtle flex items-center justify-center"
+        className="border-l border-border-subtle overflow-hidden"
       >
-        <span className="font-mono text-fg-muted" style={{ fontSize: 11 }}>
-          context-rail
-        </span>
+        <ContextRail
+          agents={state.agents}
+          criticResult={state.criticResult}
+          ticker={ticker}
+        />
       </div>
 
-      {/* Bottom — event log (M6) */}
+      {/* Bottom — event log */}
       <div
         style={{ gridArea: "event-log" }}
-        className="border-t border-border-subtle flex items-center gap-3 px-4"
+        className="border-t border-border-subtle overflow-hidden"
       >
-        <span className="font-mono text-fg-muted" style={{ fontSize: 11 }}>
-          {state.events.length > 0
-            ? `${state.events.length} events`
-            : "event-log — M6"}
-        </span>
-        {state.events.length > 0 && (
-          <span className="font-mono text-fg-muted" style={{ fontSize: 11 }}>
-            · last:{" "}
-            <span className="text-accent">
-              {state.events[state.events.length - 1]?.type}
-            </span>
-          </span>
-        )}
+        <EventLog events={state.events} status={state.status} />
       </div>
     </div>
   );

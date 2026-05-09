@@ -111,17 +111,18 @@ Phase 8 — Frontend (Next.js):
 - [x] M1: SourceIcon — yfinance, wikipedia, reddit, github, news
 - [x] M2: Landing page + RunForm + lib/api.ts stub
 - [x] M3: Run page header + AgentsPanel + SSE hook (useRunEvents)
-- [ ] M4: Memo tab + CitationCard
-- [ ] M5: Evidence tab
-- [ ] M6: Trace tab + EventLog
-- [ ] M7: Empty/error states + polish
-- [ ] M8: Context rail (conditional)
+- [x] M4: Memo tab + CitationCard
+- [x] M5: Evidence tab
+- [x] M6: Trace tab + EventLog
+- [x] M7: Empty/error states + polish
+- [x] M8: Context rail — live stock snapshot (price, 52W range, metrics, critic score)
 
 ### Phase 9 — Evaluation Framework
-- [ ] 20-company benchmark dataset
-- [ ] Metrics: accuracy, citation precision, hallucination rate
-- [ ] Baseline single-prompt comparison
-- [ ] Results table for README
+- [x] 20-company benchmark dataset (6 benchmark, 14 extended)
+- [x] Metrics: hallucination_rate, citation_count, finding_completeness
+- [x] benchmark.py CLI runner (system + baseline, markdown table output)
+- [x] baseline.py — single-prompt comparison (same model, no tools)
+- [x] Results table added to README
 
 ### Phase 10 — Deployment
 - [ ] Backend on Railway/Render

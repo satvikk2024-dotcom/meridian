@@ -1,0 +1,126 @@
+{
+  "system": [
+    {
+      "company": "Reliance Industries",
+      "ticker": "RELIANCE.NS",
+      "mode": "system",
+      "duration_s": 71.29,
+      "agent_count": 4,
+      "failed_agents": 0,
+      "hallucination_rate": 0.231,
+      "citation_count": 16,
+      "finding_completeness": 0.957
+    },
+    {
+      "company": "TCS",
+      "ticker": "TCS.NS",
+      "mode": "system",
+      "duration_s": 47.98,
+      "agent_count": 4,
+      "failed_agents": 0,
+      "hallucination_rate": 0.269,
+      "citation_count": 16,
+      "finding_completeness": 0.957
+    },
+    {
+      "company": "HDFC Bank",
+      "ticker": "HDFCBANK.NS",
+      "mode": "system",
+      "duration_s": 222.27,
+      "agent_count": 4,
+      "failed_agents": 0,
+      "hallucination_rate": 0.2,
+      "citation_count": 16,
+      "finding_completeness": 1.0
+    },
+    {
+      "company": "Infosys",
+      "ticker": "INFY.NS",
+      "mode": "system",
+      "duration_s": 232.68,
+      "agent_count": 4,
+      "failed_agents": 0,
+      "hallucination_rate": 0.083,
+      "citation_count": 16,
+      "finding_completeness": 1.0
+    },
+    {
+      "company": "Zomato",
+      "ticker": "ZOMATO.NS",
+      "mode": "system",
+      "duration_s": 186.29,
+      "agent_count": 4,
+      "failed_agents": 0,
+      "hallucination_rate": 0.625,
+      "citation_count": 15,
+      "finding_completeness": 0.957
+    },
+    {
+      "company": "Wipro",
+      "ticker": "WIPRO.NS",
+      "mode": "system",
+      "duration_s": 52.03,
+      "agent_count": 4,
+      "failed_agents": 0,
+      "hallucination_rate": 0.259,
+      "citation_count": 16,
+      "finding_completeness": 1.0
+    }
+  ],
+  "baseline": [
+    {
+      "company": "Reliance Industries",
+      "ticker": "RELIANCE.NS",
+      "mode": "baseline",
+      "raw_chars": 4024,
+      "hallucination_rate": 0.0,
+      "citation_count": 0,
+      "finding_completeness": 0.0
+    },
+    {
+      "company": "TCS",
+      "ticker": "TCS.NS",
+      "mode": "baseline",
+      "raw_chars": 3829,
+      "hallucination_rate": 0.429,
+      "citation_count": 0,
+      "finding_completeness": 0.0
+    },
+    {
+      "company": "HDFC Bank",
+      "ticker": "HDFCBANK.NS",
+      "mode": "baseline",
+      "raw_chars": 4838,
+      "hallucination_rate": 0.0,
+      "citation_count": 0,
+      "finding_completeness": 0.0
+    },
+    {
+      "company": "Infosys",
+      "ticker": "INFY.NS",
+      "mode": "baseline",
+      "raw_chars": 3829,
+      "hallucination_rate": 0.143,
+      "citation_count": 0,
+      "finding_completeness": 0.0
+    },
+    {
+      "company": "Zomato",
+      "ticker": "ZOMATO.NS",
+      "mode": "baseline",
+      "raw_chars": 4201,
+      "hallucination_rate": 0.375,
+      "citation_count": 0,
+      "finding_completeness": 0.0
+    },
+    {
+      "company": "Wipro",
+      "ticker": "WIPRO.NS",
+      "mode": "baseline",
+      "raw_chars": 4432,
+      "hallucination_rate": 0.714,
+      "citation_count": 0,
+      "finding_completeness": 0.0
+    }
+  ]
+}

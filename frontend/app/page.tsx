@@ -12,9 +12,9 @@ export default function Home() {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(circle, var(--border-subtle) 1px, transparent 1px)",
+            "radial-gradient(circle, var(--border-default) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
-          opacity: 0.5,
+          opacity: 0.6,
         }}
       />
 
