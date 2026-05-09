@@ -110,7 +110,7 @@ Phase 8 — Frontend (Next.js):
 - [x] M1: StatusBadge — 5 states with pulse animation
 - [x] M1: SourceIcon — yfinance, wikipedia, reddit, github, news
 - [x] M2: Landing page + RunForm + lib/api.ts stub
-- [ ] M3: Run page header + AgentsPanel + SSE hook
+- [x] M3: Run page header + AgentsPanel + SSE hook (useRunEvents)
 - [ ] M4: Memo tab + CitationCard
 - [ ] M5: Evidence tab
 - [ ] M6: Trace tab + EventLog

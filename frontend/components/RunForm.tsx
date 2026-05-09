@@ -6,12 +6,12 @@ import { ArrowRight, Loader2 } from "lucide-react";
 import { createRunSlug } from "@/lib/api";
 
 const DEMO_COMPANIES: { name: string; ticker: string }[] = [
-  { name: "Apple",     ticker: "AAPL" },
-  { name: "Microsoft", ticker: "MSFT" },
-  { name: "Coinbase",  ticker: "COIN" },
-  { name: "Tesla",     ticker: "TSLA" },
-  { name: "Airbnb",    ticker: "ABNB" },
-  { name: "Snowflake", ticker: "SNOW" },
+  { name: "Reliance Industries", ticker: "RELIANCE.NS" },
+  { name: "TCS",                 ticker: "TCS.NS"      },
+  { name: "HDFC Bank",           ticker: "HDFCBANK.NS" },
+  { name: "Infosys",             ticker: "INFY.NS"     },
+  { name: "Zomato",              ticker: "ZOMATO.NS"   },
+  { name: "Wipro",               ticker: "WIPRO.NS"    },
 ];
 
 export default function RunForm() {
