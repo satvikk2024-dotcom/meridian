@@ -103,10 +103,19 @@ Phase 8 — Frontend (Next.js):
 - [x] memo field added to run_complete SSE event
 
 ### Phase 8 — Frontend
-- [ ] Run form
-- [ ] Live progress feed (SSE consumer)
-- [ ] Memo viewer
-- [ ] Citation hover cards
+- [x] M1: Design system foundation — tokens, Tailwind theme, Inter + JetBrains Mono fonts
+- [x] M1: layout.tsx — root layout, dark background, no flash
+- [x] M1: page.tsx — "MERIDIAN" placeholder in accent color
+- [x] M1: runs/[id]/page.tsx — 3-column CSS grid scaffold (agents-panel, main-panel, context-rail, event-log)
+- [x] M1: StatusBadge — 5 states with pulse animation
+- [x] M1: SourceIcon — yfinance, wikipedia, reddit, github, news
+- [ ] M2: Landing page + RunForm
+- [ ] M3: Run page header + AgentsPanel + SSE hook
+- [ ] M4: Memo tab + CitationCard
+- [ ] M5: Evidence tab
+- [ ] M6: Trace tab + EventLog
+- [ ] M7: Empty/error states + polish
+- [ ] M8: Context rail (conditional)
 
 ### Phase 9 — Evaluation Framework
 - [ ] 20-company benchmark dataset
