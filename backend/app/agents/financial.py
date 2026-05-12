@@ -1,20 +1,27 @@
 """
-Financial agent. Fetches stock fundamentals + company background, then asks
-the LLM to produce structured findings grounded in that evidence.
+Financial agent. Fetches stock fundamentals + company background + recent news,
+then asks the LLM to produce structured findings grounded in that evidence.
 
 Flow:
-    1. Fetch stock data from yfinance (async, cached)
-    2. Fetch Wikipedia summary (async, cached)
-    3. Build a prompt that includes all raw evidence
-    4. Call parse_response → FinancialFindings (Pydantic model)
+    1. Fetch stock data (yfinance), Wikipedia summary, and news headlines in parallel
+    2. Build a prompt from stock + wiki data only (news added as citations, not in prompt)
+    3. Call parse_response → FinancialFindings (Pydantic model)
+    4. Append news citations with real publish timestamps (enables recency scoring)
     5. Wrap findings + evidence + citations into AgentResult
+
+Why news is not in the LLM prompt:
+    - Keeps the prompt cache stable (same yfinance+wiki data = same hash = cache hit)
+    - News headlines are supplementary evidence, not primary analysis inputs
+    - The Citation.fetched_at field captures article age for recency metrics
 """
+import asyncio
 import structlog
 from pydantic import Field
 
 from app.agents.base import Agent, AgentResult, Citation
 from app.llm.schemas import LLMOutputBase, parse_response
 from app.sources.bse import fetch_stock_data
+from app.sources.news import fetch_news
 from app.sources.wikipedia import fetch_summary
 
 logger = structlog.get_logger()
@@ -72,14 +79,14 @@ class FinancialAgent(Agent):
     async def run(self, company: str, ticker: str) -> AgentResult:
         logger.info("financial_agent_start", company=company, ticker=ticker)
 
-        # Fetch both sources in parallel — no reason to wait for one before the other
-        import asyncio
-        stock_data, wiki_data = await asyncio.gather(
+        # Fetch all three sources in parallel
+        stock_data, wiki_data, news_items = await asyncio.gather(
             fetch_stock_data(ticker),
             fetch_summary(company),
+            fetch_news(company),
         )
 
-        # Build citations from the raw evidence we have
+        # Build citations from yfinance + wikipedia
         citations = [
             Citation(source="yfinance", label="Market Cap", value=stock_data["market_cap"],
                      url=f"https://finance.yahoo.com/quote/{ticker}"),
@@ -98,7 +105,17 @@ class FinancialAgent(Agent):
                 value=wiki_data["title"], url=wiki_data["url"],
             ))
 
-        # Ask the LLM to analyse the evidence
+        # Append news citations with real publish timestamps (no LLM call)
+        for item in news_items[:5]:
+            citations.append(Citation(
+                source="news",
+                label=item["title"][:70],
+                value=item["source"],
+                url=item["url"],
+                fetched_at=item["published_at"],
+            ))
+
+        # LLM prompt uses only yfinance + wiki — preserves cache hash
         prompt = _build_prompt(company, stock_data, wiki_data)
         try:
             findings = await parse_response(
@@ -106,7 +123,7 @@ class FinancialAgent(Agent):
                 prompt,
                 system=SYSTEM_PROMPT,
             )
-            logger.info("financial_agent_done", company=company)
+            logger.info("financial_agent_done", company=company, news_count=len(news_items))
             return AgentResult(
                 agent_name=self.name,
                 company=company,

@@ -7,31 +7,30 @@
 
 ## Current Phase
 
-**Phase 4 — Agent System**
+**Phase 9.5 — Diagnostic Expansion + Surgical Fixes**
 
 ## Status
 
-✅ Complete — all 4 agents + base class + sources
+✅ Complete — M1 (ground truth + new metrics + report.py), M2 (baseline lock), M3 (HAL regression fixed), M4 (news agent)
 
-## Last Session Summary
+## Last Session Summary (2026-05-10)
 
-Phase 0 (Planning) complete. `docs/PLANNING.md` is the master plan. ADRs 001-004 documented in `docs/decisions/`. Architecture, schema, agent responsibilities, eval framework, and risk register all locked.
-
-Prerequisites verified and installed (2026-05-08):
-- Python 3.11.9 installed via pyenv, pinned to project via `.python-version`
-- Node.js 20.20.2 installed via Homebrew, added to PATH in `.zshrc`
-- Ollama 0.23.1 installed and running as background service
-- `qwen2.5:7b` (4.7GB) pulled and smoke-tested
-
-Git repo initialized, initial commit on `main` branch.
+Completed Phase 9.5 milestones:
+- **M1**: 15 ground-truth JSON files (one per benchmark company), new metrics (per-agent HAL, source breakdown, worst findings, GT coverage), `report.py` for markdown report generation, benchmark.py updated to save `report.md` + `baseline_locked.json`
+- **M2**: 9-company benchmark run; baseline locked to `data/eval/baseline_locked.json`
+- **M3**: HAL regression fixed — prompt changes bust LLM cache → model variance. Reverted all system prompt edits to originals. Added `skip_critic=True` for customer agent short-circuit path
+- **M4**: News agent (`backend/app/sources/news.py`) — Google News RSS, no API key, returns 5 headlines as citations with `fetched_at` datetime. News NOT included in LLM prompt (preserves cache hash). Financial agent fetches news in parallel
+- **News UI**: `MemoViewer.tsx` — `NewsCard` component shows headlines with publisher badge, date, external link. Renders in skeleton phase (as soon as financial agent done, ~30s before memo)
+- **Critical bug fix**: `datetime` not JSON serializable — `_sse()` now uses `json.dumps(data, default=str)`
+- **TypeScript**: `RawCitation` interface in `sse.ts`, `AgentState.citations: RawCitation[]`
 
 ## Next Concrete Step
 
-Phase 8 — Frontend (Next.js):
-1. `frontend/app/page.tsx` — run form (company name + ticker input)
-2. `frontend/components/ProgressFeed.tsx` — SSE consumer showing live agent progress
-3. `frontend/components/MemoViewer.tsx` — renders the markdown memo with citation links
-4. `frontend/lib/api.ts` — EventSource wrapper for the SSE stream
+**Phase 10 — Deployment**
+1. Backend on Railway or Render (free tier)
+2. Frontend on Vercel
+3. Pre-cache demo runs for 3-4 companies so demo is instant
+4. Record a 90-second demo video
 
 ## Phase Checklist
 
@@ -118,11 +117,23 @@ Phase 8 — Frontend (Next.js):
 - [x] M8: Context rail — live stock snapshot (price, 52W range, metrics, critic score)
 
 ### Phase 9 — Evaluation Framework
-- [x] 20-company benchmark dataset (6 benchmark, 14 extended)
+- [x] 20-company benchmark dataset (22 total, 15 with benchmark:true)
 - [x] Metrics: hallucination_rate, citation_count, finding_completeness
 - [x] benchmark.py CLI runner (system + baseline, markdown table output)
 - [x] baseline.py — single-prompt comparison (same model, no tools)
 - [x] Results table added to README
+
+### Phase 9.5 — Diagnostic Expansion + Surgical Fixes
+- [x] M1: 15 ground-truth JSON files (12-15 verified claims per company)
+- [x] M1: New metrics — per_agent_hallucination, source_citation_breakdown, worst_findings, ground_truth_coverage
+- [x] M1: report.py — markdown report with baseline comparison table
+- [x] M1: benchmark.py updated — saves report.md + baseline_locked.json
+- [x] M2: 9-company benchmark baseline locked
+- [x] M3: HAL regression fixed — reverted prompt changes, added skip_critic flag for customer agent
+- [x] M4: news.py source — Google News RSS, no API key, datetime-stamped headlines
+- [x] M4: Financial agent fetches news in parallel (not in LLM prompt — cache-safe)
+- [x] M4: NewsCard UI in MemoViewer — renders during skeleton phase, not just after memo
+- [x] Bug: datetime serialization in _sse() — json.dumps(..., default=str)
 
 ### Phase 10 — Deployment
 - [ ] Backend on Railway/Render
@@ -131,10 +142,10 @@ Phase 8 — Frontend (Next.js):
 - [ ] Demo video recorded
 
 ### Phase 11 — Resume + Interview Prep
-- [ ] Resume bullet finalized
-- [ ] LinkedIn post drafted
-- [ ] README polished
-- [ ] 3 interview stories rehearsed
+- [x] Resume bullet finalized (with real benchmark numbers)
+- [x] 3 interview stories written (critic architecture, cache-busting failure, product insight)
+- [x] README polished — real numbers, clean structure, no filler
+- [x] FUTURE.md cleaned up
 
 ---
 

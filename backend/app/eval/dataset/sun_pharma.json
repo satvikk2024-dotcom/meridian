@@ -1,0 +1,20 @@
+{
+  "ticker": "SUNPHARMA.NS",
+  "name": "Sun Pharma",
+  "claims": [
+    {"category": "financial", "claim": "Revenue approximately 48000 crore in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Net profit margin approximately 18 to 20 percent", "source": "annual report"},
+    {"category": "financial", "claim": "US generics market contributes approximately 30 percent of revenue", "source": "annual report"},
+    {"category": "financial", "claim": "Specialty drugs like Ilumya for psoriasis sold in US market", "source": "company filings"},
+    {"category": "financial", "claim": "Consistent improvement in US specialty revenue over years", "source": "quarterly results"},
+    {"category": "market", "claim": "India's largest pharmaceutical company by market capitalisation", "source": "NSE data"},
+    {"category": "market", "claim": "Listed on NSE and BSE exchanges", "source": "NSE/BSE"},
+    {"category": "market", "claim": "Exports to over 100 countries globally", "source": "annual report"},
+    {"category": "people", "claim": "Founder and Managing Director is Dilip Shanghvi", "source": "company website"},
+    {"category": "people", "claim": "Dilip Shanghvi founded the company in 1983 in Vapi Gujarat", "source": "company history"},
+    {"category": "customer", "claim": "Operates in branded generics specialty generics and specialty branded segments", "source": "annual report"},
+    {"category": "financial", "claim": "Research and development spending increasing as specialty pipeline grows", "source": "annual report"},
+    {"category": "market", "claim": "Acquired Ranbaxy Laboratories in 2015 expanding Indian branded generics", "source": "company announcement"},
+    {"category": "financial", "claim": "Strong India branded generics business contributing over 30 percent of revenue", "source": "annual report"}
+  ]
+}

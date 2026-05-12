@@ -1,0 +1,20 @@
+{
+  "ticker": "BHARTIARTL.NS",
+  "name": "Bharti Airtel",
+  "claims": [
+    {"category": "financial", "claim": "Consolidated revenue approximately 1.5 lakh crore", "source": "annual report"},
+    {"category": "financial", "claim": "ARPU (average revenue per user) consistently increasing", "source": "quarterly results"},
+    {"category": "financial", "claim": "Net debt is significant due to spectrum payments and capex", "source": "company filings"},
+    {"category": "financial", "claim": "Africa operations through Airtel Africa listed separately", "source": "company structure"},
+    {"category": "market", "claim": "Second largest telecom company in India by subscribers after Jio", "source": "TRAI data"},
+    {"category": "market", "claim": "Listed on NSE and BSE exchanges", "source": "NSE/BSE"},
+    {"category": "market", "claim": "Leader in 5G rollout in India with major cities covered", "source": "company announcements"},
+    {"category": "market", "claim": "Operates in 14 African countries through Airtel Africa", "source": "Airtel Africa filings"},
+    {"category": "people", "claim": "CEO is Gopal Vittal", "source": "company website"},
+    {"category": "people", "claim": "Sunil Bharti Mittal is the founder and chairman", "source": "company website"},
+    {"category": "customer", "claim": "Offers mobile broadband DTH and enterprise connectivity services", "source": "company website"},
+    {"category": "financial", "claim": "Enterprise segment growing as businesses shift to cloud", "source": "annual report"},
+    {"category": "market", "claim": "Competes with Jio and Vi in Indian telecom market", "source": "industry analysis"},
+    {"category": "financial", "claim": "Revenue from data services exceeds voice revenue", "source": "quarterly results"}
+  ]
+}

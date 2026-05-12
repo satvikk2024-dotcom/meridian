@@ -1,0 +1,21 @@
+{
+  "ticker": "RELIANCE.NS",
+  "name": "Reliance Industries",
+  "claims": [
+    {"category": "financial", "claim": "Revenue exceeded 9 lakh crore in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Net profit approximately 79000 crore in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "EBITDA margins approximately 17 to 18 percent", "source": "analyst estimates"},
+    {"category": "financial", "claim": "Operates three major segments: O2C, Retail, and Digital Services", "source": "annual report"},
+    {"category": "financial", "claim": "Reliance Retail is India's largest retailer by revenue", "source": "company filings"},
+    {"category": "market", "claim": "India's most valuable company by market capitalisation", "source": "NSE data"},
+    {"category": "market", "claim": "Net debt to EBITDA approximately 1x", "source": "company filings"},
+    {"category": "market", "claim": "Conglomerate with presence in energy, retail, and telecom sectors", "source": "annual report"},
+    {"category": "people", "claim": "Chairman and Managing Director is Mukesh Ambani", "source": "company website"},
+    {"category": "people", "claim": "Mukesh Ambani is one of the wealthiest individuals globally", "source": "Forbes"},
+    {"category": "financial", "claim": "Jio Platforms had over 400 million subscribers", "source": "company filings"},
+    {"category": "market", "claim": "Listed on both NSE and BSE exchanges", "source": "NSE/BSE"},
+    {"category": "financial", "claim": "O2C segment includes refining and petrochemicals businesses", "source": "annual report"},
+    {"category": "people", "claim": "Sons Akash and Anant Ambani involved in leadership roles at group companies", "source": "company announcements"},
+    {"category": "customer", "claim": "JioFiber and Jio broadband services serve residential customers", "source": "company website"}
+  ]
+}

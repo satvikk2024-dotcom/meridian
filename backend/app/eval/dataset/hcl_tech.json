@@ -1,0 +1,20 @@
+{
+  "ticker": "HCLTECH.NS",
+  "name": "HCL Technologies",
+  "claims": [
+    {"category": "financial", "claim": "Revenue approximately 13 billion USD in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Operating margin approximately 18 to 19 percent", "source": "quarterly results"},
+    {"category": "financial", "claim": "HCLSoftware products business differentiates from pure IT services peers", "source": "annual report"},
+    {"category": "financial", "claim": "Engineering and R&D services is a significant revenue vertical", "source": "annual report"},
+    {"category": "market", "claim": "Third or fourth largest IT company in India by revenue", "source": "industry data"},
+    {"category": "market", "claim": "Listed on NSE and BSE exchanges", "source": "NSE/BSE"},
+    {"category": "market", "claim": "Competes with TCS Infosys and Wipro in IT services", "source": "industry analysis"},
+    {"category": "market", "claim": "Products segment includes IBM partnership acquired software products", "source": "company announcements"},
+    {"category": "people", "claim": "CEO is C Vijayakumar", "source": "company website"},
+    {"category": "people", "claim": "Shiv Nadar is the founder and holds majority ownership", "source": "shareholder filings"},
+    {"category": "people", "claim": "Shiv Nadar Foundation runs significant philanthropic and educational activities", "source": "public records"},
+    {"category": "financial", "claim": "Steady dividend payout with consistent dividend yield", "source": "company announcements"},
+    {"category": "customer", "claim": "Serves manufacturing financial services life sciences and technology sectors", "source": "annual report"},
+    {"category": "financial", "claim": "Revenue mix more balanced between services and products than peers", "source": "analyst reports"}
+  ]
+}

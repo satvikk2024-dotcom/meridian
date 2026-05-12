@@ -7,12 +7,20 @@ import { buildStreamUrl } from "./api";
 export type RunStatus = "idle" | "running" | "complete" | "failed";
 export type AgentStatus = "pending" | "running" | "complete" | "failed";
 
+export interface RawCitation {
+  source: string;
+  label: string;
+  value: string;
+  url: string;
+  fetched_at: string;
+}
+
 export interface AgentState {
   status: AgentStatus;
   startedAt: number | null;
   finishedAt: number | null;
   findings: Record<string, unknown>;
-  citations: unknown[];
+  citations: RawCitation[];
   error: string | null;
 }
 
@@ -116,7 +124,7 @@ function reducer(state: RunState, action: Action): RunState {
             status: action.error ? "failed" : "complete",
             finishedAt: action.ts,
             findings: action.findings,
-            citations: action.citations,
+            citations: action.citations as RawCitation[],
             error: action.error,
           },
         },

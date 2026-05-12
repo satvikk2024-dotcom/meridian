@@ -1,0 +1,20 @@
+{
+  "ticker": "HDFCBANK.NS",
+  "name": "HDFC Bank",
+  "claims": [
+    {"category": "financial", "claim": "Net profit approximately 60000 crore in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Net interest margin approximately 3.5 to 3.8 percent", "source": "quarterly results"},
+    {"category": "financial", "claim": "GNPA ratio approximately 1.2 to 1.4 percent", "source": "quarterly results"},
+    {"category": "financial", "claim": "CASA ratio approximately 38 to 40 percent", "source": "quarterly results"},
+    {"category": "financial", "claim": "Merged with HDFC Ltd in July 2023", "source": "company announcement"},
+    {"category": "market", "claim": "Largest private sector bank in India by market capitalisation", "source": "NSE data"},
+    {"category": "market", "claim": "Listed on NSE BSE and New York Stock Exchange as ADR", "source": "exchange filings"},
+    {"category": "market", "claim": "Loan growth slowed post merger with HDFC Ltd", "source": "analyst reports"},
+    {"category": "people", "claim": "CEO is Sashidhar Jagdishan", "source": "company website"},
+    {"category": "people", "claim": "HDFC Group founded by Hasmukhbhai Parekh", "source": "company history"},
+    {"category": "financial", "claim": "Pays consistent dividends to shareholders", "source": "company announcements"},
+    {"category": "customer", "claim": "Offers retail banking corporate banking and treasury operations", "source": "annual report"},
+    {"category": "financial", "claim": "Capital adequacy ratio well above regulatory requirements", "source": "annual report"},
+    {"category": "market", "claim": "Competes primarily with ICICI Bank Kotak Mahindra Bank and Axis Bank", "source": "industry analysis"}
+  ]
+}

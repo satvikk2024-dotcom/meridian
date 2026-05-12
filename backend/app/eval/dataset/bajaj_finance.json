@@ -1,0 +1,20 @@
+{
+  "ticker": "BAJFINANCE.NS",
+  "name": "Bajaj Finance",
+  "claims": [
+    {"category": "financial", "claim": "Net profit approximately 14000 crore in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Assets under management approximately 3.3 lakh crore", "source": "quarterly results"},
+    {"category": "financial", "claim": "Return on equity approximately 23 to 25 percent", "source": "annual report"},
+    {"category": "financial", "claim": "Consumer durable SME and mortgage are major lending segments", "source": "annual report"},
+    {"category": "financial", "claim": "Gross NPA ratio historically low at around 1 percent", "source": "quarterly results"},
+    {"category": "market", "claim": "India's largest consumer-focused NBFC by AUM", "source": "industry data"},
+    {"category": "market", "claim": "Listed on NSE and BSE exchanges", "source": "NSE/BSE"},
+    {"category": "market", "claim": "Bajaj Finserv is the parent holding company", "source": "company structure"},
+    {"category": "people", "claim": "Managing Director is Rajeev Jain", "source": "company website"},
+    {"category": "people", "claim": "Bajaj Group is the promoter with significant ownership stake", "source": "shareholder filings"},
+    {"category": "customer", "claim": "Offers EMI financing across 100000 plus stores and online platforms", "source": "company website"},
+    {"category": "financial", "claim": "Net interest income growing at 25 to 30 percent CAGR historically", "source": "analyst reports"},
+    {"category": "market", "claim": "Competes with HDFC Bank Axis Bank and other NBFCs in consumer lending", "source": "industry analysis"},
+    {"category": "financial", "claim": "High valuation premium due to superior growth and asset quality", "source": "analyst reports"}
+  ]
+}

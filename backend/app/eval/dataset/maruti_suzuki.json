@@ -1,0 +1,20 @@
+{
+  "ticker": "MARUTI.NS",
+  "name": "Maruti Suzuki",
+  "claims": [
+    {"category": "financial", "claim": "Revenue approximately 1.4 lakh crore in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Net profit approximately 13000 crore in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "EBITDA margins improving as premiumisation reduces discount pressure", "source": "quarterly results"},
+    {"category": "financial", "claim": "Suzuki Motor Corporation Japan holds majority ownership", "source": "shareholder filings"},
+    {"category": "market", "claim": "Market share approximately 40 to 42 percent of Indian passenger vehicle market", "source": "SIAM data"},
+    {"category": "market", "claim": "Largest passenger vehicle manufacturer in India by volume", "source": "SIAM data"},
+    {"category": "market", "claim": "Listed on NSE and BSE exchanges", "source": "NSE/BSE"},
+    {"category": "market", "claim": "Strong presence in rural and semi-urban markets", "source": "annual report"},
+    {"category": "people", "claim": "CEO is Hisashi Takeuchi a Japanese executive from Suzuki Motor", "source": "company website"},
+    {"category": "people", "claim": "RC Bhargava is the non-executive chairman", "source": "company website"},
+    {"category": "customer", "claim": "CNG vehicle segment growing rapidly reflecting fuel cost consciousness", "source": "quarterly results"},
+    {"category": "financial", "claim": "No net debt with significant cash reserves", "source": "annual report"},
+    {"category": "market", "claim": "Expanding into SUV segment to defend market share from Hyundai Tata Motors Mahindra", "source": "company announcements"},
+    {"category": "financial", "claim": "Manufacturing plant in Manesar Haryana and Hansalpur Gujarat", "source": "annual report"}
+  ]
+}

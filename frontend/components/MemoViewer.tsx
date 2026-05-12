@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronRight, AlertTriangle } from "lucide-react";
+import { ChevronDown, ChevronRight, AlertTriangle, ExternalLink, Newspaper } from "lucide-react";
 import { parseMemo, type MemoSection, type MemoField } from "@/lib/memo";
 import CitationCard from "@/components/CitationCard";
+import type { RawCitation } from "@/lib/sse";
 
 // ── Skeleton ─────────────────────────────────────────────────────────
 
@@ -143,15 +144,79 @@ function SectionCard({
   );
 }
 
+// ── News card ─────────────────────────────────────────────────────────
+
+function NewsCard({ items }: { items: RawCitation[] }) {
+  if (items.length === 0) return null;
+
+  return (
+    <div className="border border-border-subtle rounded-md overflow-hidden">
+      <div className="px-4 py-3 bg-bg-surface flex items-center gap-2">
+        <Newspaper size={12} className="text-cyan-400" />
+        <span className="font-mono text-fg-muted" style={{ fontSize: 11 }}>
+          RECENT NEWS · {items.length}
+        </span>
+      </div>
+      <div className="bg-bg-primary divide-y divide-border-subtle">
+        {items.map((item, i) => {
+          const date = item.fetched_at
+            ? new Date(item.fetched_at).toLocaleDateString("en-IN", {
+                day: "numeric", month: "short", year: "numeric",
+              })
+            : "";
+          return (
+            <a
+              key={i}
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 px-4 py-3 hover:bg-bg-elevated transition-colors group"
+            >
+              <div className="flex-1 min-w-0">
+                <p className="font-mono text-fg-primary group-hover:text-accent transition-colors"
+                   style={{ fontSize: 12, lineHeight: 1.5 }}>
+                  {item.label}
+                </p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="font-mono px-1.5 py-0.5 rounded text-cyan-400 bg-cyan-400/10"
+                        style={{ fontSize: 10 }}>
+                    {item.value}
+                  </span>
+                  {date && (
+                    <span className="font-mono text-fg-muted" style={{ fontSize: 10 }}>
+                      {date}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <ExternalLink size={12} className="text-fg-muted group-hover:text-accent flex-shrink-0 mt-1 transition-colors" />
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // ── Main viewer ───────────────────────────────────────────────────────
 
 interface MemoViewerProps {
   memo: string | null;
+  newsCitations?: RawCitation[];
 }
 
-export default function MemoViewer({ memo }: MemoViewerProps) {
+export default function MemoViewer({ memo, newsCitations = [] }: MemoViewerProps) {
   if (!memo) {
-    return <MemoSkeleton />;
+    return (
+      <div className="h-full overflow-y-auto">
+        <MemoSkeleton />
+        {newsCitations.length > 0 && (
+          <div className="max-w-2xl mx-auto px-6 pb-6">
+            <NewsCard items={newsCitations} />
+          </div>
+        )}
+      </div>
+    );
   }
 
   const parsed = parseMemo(memo);
@@ -179,6 +244,9 @@ export default function MemoViewer({ memo }: MemoViewerProps) {
             defaultOpen={i < 3}
           />
         ))}
+
+        {/* Recent News */}
+        <NewsCard items={newsCitations} />
 
         {/* Citations */}
         {parsed.citations.length > 0 && (

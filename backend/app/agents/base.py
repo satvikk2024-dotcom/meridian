@@ -8,6 +8,7 @@ Why a base class?
 """
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
+from datetime import datetime
 
 
 @dataclass
@@ -17,6 +18,7 @@ class Citation:
     label: str        # human-readable description, e.g. "Revenue FY2024"
     value: str        # the actual fact: "₹8.97L Cr"
     url: str = ""     # original URL if available
+    fetched_at: datetime = field(default_factory=datetime.now)
 
 
 @dataclass
@@ -35,6 +37,7 @@ class AgentResult:
     evidence: dict = field(default_factory=dict)
     citations: list[Citation] = field(default_factory=list)
     error: str = ""
+    skip_critic: bool = False   # True when findings are pre-determined, not LLM claims
 
 
 class Agent(ABC):

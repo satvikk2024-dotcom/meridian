@@ -6,17 +6,24 @@ import { ArrowRight, Loader2 } from "lucide-react";
 import { createRunSlug } from "@/lib/api";
 
 const DEMO_COMPANIES: { name: string; ticker: string }[] = [
-  { name: "Reliance Industries", ticker: "RELIANCE.NS" },
-  { name: "TCS",                 ticker: "TCS.NS"      },
-  { name: "HDFC Bank",           ticker: "HDFCBANK.NS" },
-  { name: "Infosys",             ticker: "INFY.NS"     },
-  { name: "ITC",                  ticker: "ITC.NS"      },
-  { name: "Wipro",               ticker: "WIPRO.NS"    },
+  { name: "Reliance Industries", ticker: "RELIANCE.NS"   },
+  { name: "TCS",                 ticker: "TCS.NS"        },
+  { name: "HDFC Bank",           ticker: "HDFCBANK.NS"   },
+  { name: "Infosys",             ticker: "INFY.NS"       },
+  { name: "ITC",                 ticker: "ITC.NS"        },
+  { name: "Wipro",               ticker: "WIPRO.NS"      },
+  { name: "ICICI Bank",          ticker: "ICICIBANK.NS"  },
+  { name: "Bharti Airtel",       ticker: "BHARTIARTL.NS" },
+  { name: "HCL Tech",            ticker: "HCLTECH.NS"    },
+  { name: "Bajaj Finance",       ticker: "BAJFINANCE.NS" },
+  { name: "Sun Pharma",          ticker: "SUNPHARMA.NS"  },
+  { name: "Maruti Suzuki",       ticker: "MARUTI.NS"     },
 ];
 
 export default function RunForm() {
   const router = useRouter();
   const [value, setValue] = useState("");
+  const [ticker, setTicker] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -34,9 +41,10 @@ export default function RunForm() {
     router.push(`/runs/${slug}?${params}`);
   }
 
-  function handleChip(name: string, ticker: string) {
+  function handleChip(name: string, t: string) {
     setValue(name);
-    doSubmit(name, ticker);
+    setTicker(t);
+    doSubmit(name, t);
   }
 
   return (
@@ -50,8 +58,8 @@ export default function RunForm() {
             setValue(e.target.value);
             if (error) setError("");
           }}
-          onKeyDown={(e) => e.key === "Enter" && doSubmit(value, "")}
-          placeholder="Enter a public company name..."
+          onKeyDown={(e) => e.key === "Enter" && doSubmit(value, ticker)}
+          placeholder="Company name..."
           disabled={loading}
           autoFocus
           className="flex-1 h-12 px-4 rounded-lg text-small font-sans
@@ -61,8 +69,22 @@ export default function RunForm() {
             disabled:opacity-50 disabled:cursor-not-allowed
             transition-colors duration-150"
         />
+        <input
+          type="text"
+          value={ticker}
+          onChange={(e) => setTicker(e.target.value.toUpperCase())}
+          onKeyDown={(e) => e.key === "Enter" && doSubmit(value, ticker)}
+          placeholder="Ticker..."
+          disabled={loading}
+          className="w-32 h-12 px-4 rounded-lg text-small font-mono
+            bg-bg-surface text-fg-primary placeholder:text-fg-muted
+            border border-border-default
+            focus:outline-none focus:border-accent
+            disabled:opacity-50 disabled:cursor-not-allowed
+            transition-colors duration-150"
+        />
         <button
-          onClick={() => doSubmit(value, "")}
+          onClick={() => doSubmit(value, ticker)}
           disabled={loading}
           className="h-12 px-6 rounded-lg font-mono text-small font-semibold
             bg-accent text-bg-primary

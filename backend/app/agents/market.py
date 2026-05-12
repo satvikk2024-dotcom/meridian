@@ -26,6 +26,19 @@ Rules:
 """
 
 
+def _sanitize_dividend_yield(raw: object) -> str:
+    """Return the yield as a clean string, or 'N/A' if it looks like bad data."""
+    if raw in (None, "N/A", ""):
+        return "N/A"
+    try:
+        val = float(str(raw).replace("%", "").strip())
+        if val > 0.20:  # yfinance returns a fraction (e.g. 0.018 = 1.8%)
+            return "N/A (data error)"
+        return f"{val * 100:.2f}%"
+    except (ValueError, TypeError):
+        return "N/A"
+
+
 class MarketFindings(LLMOutputBase):
     price_momentum: str = Field(description="Price trend relative to 52-week range")
     valuation_assessment: str = Field(description="Is the stock cheap, fair, or expensive vs typical sector multiples")

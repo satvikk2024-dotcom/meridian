@@ -1,0 +1,20 @@
+{
+  "ticker": "ASIANPAINT.NS",
+  "name": "Asian Paints",
+  "claims": [
+    {"category": "financial", "claim": "Revenue approximately 35000 crore in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Operating margins historically 18 to 20 percent declining with raw material pressure", "source": "analyst reports"},
+    {"category": "financial", "claim": "Volume growth softening as housing market slows", "source": "quarterly results"},
+    {"category": "financial", "claim": "International operations in over 15 countries", "source": "annual report"},
+    {"category": "market", "claim": "Market leader in organised decorative paints in India with over 50 percent market share", "source": "industry data"},
+    {"category": "market", "claim": "Listed on NSE and BSE exchanges", "source": "NSE/BSE"},
+    {"category": "market", "claim": "Competes with Berger Paints Kansai Nerolac and Indigo Paints", "source": "industry analysis"},
+    {"category": "market", "claim": "Premium paints and waterproofing products expanding revenue mix", "source": "annual report"},
+    {"category": "people", "claim": "CEO is Amit Syngle", "source": "company website"},
+    {"category": "people", "claim": "Promoter group holds approximately 52 percent stake", "source": "shareholder filings"},
+    {"category": "customer", "claim": "Decorative paints segment serves household renovation and new construction markets", "source": "annual report"},
+    {"category": "financial", "claim": "High return on equity approximately 25 to 30 percent historically", "source": "analyst reports"},
+    {"category": "market", "claim": "Distribution network of over 70000 dealers across India", "source": "annual report"},
+    {"category": "financial", "claim": "Facing margin pressure from entry of Grasim Industries into paints segment", "source": "analyst reports"}
+  ]
+}

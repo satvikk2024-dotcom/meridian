@@ -32,7 +32,7 @@ logger = structlog.get_logger()
 
 def _sse(event: str, data: dict) -> str:
     """Format a dict as an SSE message string."""
-    return f"event: {event}\ndata: {json.dumps(data)}\n\n"
+    return f"event: {event}\ndata: {json.dumps(data, default=str)}\n\n"
 
 
 async def run_all(company: str, ticker: str) -> AsyncGenerator[str, None]:

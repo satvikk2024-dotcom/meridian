@@ -4,7 +4,7 @@ import { useState } from "react";
 import MemoViewer from "@/components/MemoViewer";
 import EvidenceTab from "@/components/EvidenceTab";
 import TraceTab from "@/components/TraceTab";
-import type { AgentState, CriticResult, RawEvent } from "@/lib/sse";
+import type { AgentState, CriticResult, RawEvent, RawCitation } from "@/lib/sse";
 
 type Tab = "memo" | "evidence" | "trace";
 
@@ -55,7 +55,12 @@ export default function MemoTabs({ memo, agents, criticResult, events }: MemoTab
       {/* Tab content */}
       <div className="flex-1 overflow-hidden">
         {activeTab === "memo" && (
-          <MemoViewer memo={memo} />
+          <MemoViewer
+            memo={memo}
+            newsCitations={(agents.financial?.citations ?? []).filter(
+              (c) => c.source === "news"
+            )}
+          />
         )}
 
         {activeTab === "evidence" && (

@@ -21,8 +21,8 @@ export default function Home() {
       {/* ── Top bar ──────────────────────────────────────────────── */}
       <header className="relative z-10 flex items-center justify-between px-8 h-16 border-b border-border-subtle">
         <span
-          className="font-mono text-accent font-semibold tracking-[0.25em] uppercase"
-          style={{ fontSize: 13 }}
+          className="font-mono text-accent font-bold tracking-[0.35em] uppercase"
+          style={{ fontSize: 22 }}
         >
           Meridian
         </span>
@@ -50,6 +50,9 @@ export default function Home() {
           </h1>
           <p className="text-fg-muted" style={{ fontSize: 15 }}>
             Multi-agent research on any public company in minutes.
+          </p>
+          <p className="font-mono text-fg-muted tracking-[0.2em] uppercase" style={{ fontSize: 11, marginTop: 6 }}>
+            —— Satvik Krishna ——
           </p>
         </div>
 

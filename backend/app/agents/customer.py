@@ -24,6 +24,8 @@ Rules:
 - Be calibrated — Reddit is noisy; flag low confidence if there are few posts.
 """
 
+_MIN_RELEVANT_POSTS = 3
+
 
 class SentimentFindings(LLMOutputBase):
     overall_sentiment: str = Field(description="Bullish / Bearish / Mixed / Neutral")
@@ -34,6 +36,18 @@ class SentimentFindings(LLMOutputBase):
     confidence: float = Field(description="0.0-1.0 — low if very few posts found")
 
 
+def _filter_relevant(company: str, posts: list[dict]) -> list[dict]:
+    """Keep only posts that explicitly mention the company by name."""
+    name_lower = company.lower()
+    # Also match common short names (e.g. "Reliance" for "Reliance Industries")
+    short = name_lower.split()[0]
+    return [
+        p for p in posts
+        if name_lower in (p["title"] + p.get("selftext", "")).lower()
+        or short in (p["title"] + p.get("selftext", "")).lower()
+    ]
+
+
 def _build_prompt(company: str, posts: list[dict]) -> str:
     lines = [
         f"Analyse retail investor sentiment for {company} based on these Reddit posts.",
@@ -41,7 +55,7 @@ def _build_prompt(company: str, posts: list[dict]) -> str:
         f"=== REDDIT POSTS ({len(posts)} found) ===",
     ]
     if not posts:
-        lines.append("  No recent posts found.")
+        lines.append("  No relevant posts found.")
     else:
         for i, p in enumerate(posts, 1):
             lines.append(f"\n  [{i}] {p['title']} (score: {p['score']}, comments: {p['num_comments']})")
@@ -59,10 +73,11 @@ class CustomerSentimentAgent(Agent):
         logger.info("customer_agent_start", company=company, ticker=ticker)
 
         reddit_data = await fetch_mentions(company)
-        posts = reddit_data["posts"]
+        all_posts = reddit_data["posts"]
+        relevant_posts = _filter_relevant(company, all_posts)
 
         citations = []
-        for post in posts[:5]:  # cite top 5 posts
+        for post in relevant_posts[:5]:  # cite only relevant posts
             citations.append(Citation(
                 source="reddit",
                 label=post["title"][:60],
@@ -70,10 +85,35 @@ class CustomerSentimentAgent(Agent):
                 url=post["url"],
             ))
 
-        prompt = _build_prompt(company, posts)
+        # Short-circuit: not enough relevant signal — skip LLM to avoid hallucination
+        if len(relevant_posts) < _MIN_RELEVANT_POSTS:
+            logger.info(
+                "customer_agent_insufficient_data",
+                company=company,
+                relevant=len(relevant_posts),
+                total=len(all_posts),
+            )
+            return AgentResult(
+                agent_name=self.name,
+                company=company,
+                findings={
+                    "overall_sentiment": "Insufficient data",
+                    "dominant_themes":   [],
+                    "key_concerns":      [],
+                    "positive_signals":  [],
+                    "noise_warning":     f"Only {len(relevant_posts)} relevant Reddit posts found — too few to assess.",
+                    "confidence":        0.1,
+                },
+                evidence={"reddit": reddit_data},
+                citations=citations,
+                skip_critic=True,   # pre-determined response, not LLM claims
+            )
+
+        # Pass all_posts to prompt so the cache key matches previous runs
+        prompt = _build_prompt(company, all_posts)
         try:
             findings = await parse_response(SentimentFindings, prompt, system=SYSTEM_PROMPT)
-            logger.info("customer_agent_done", company=company, posts_analysed=len(posts))
+            logger.info("customer_agent_done", company=company, posts_analysed=len(all_posts))
             return AgentResult(
                 agent_name=self.name,
                 company=company,

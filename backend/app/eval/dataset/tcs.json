@@ -1,0 +1,20 @@
+{
+  "ticker": "TCS.NS",
+  "name": "TCS",
+  "claims": [
+    {"category": "financial", "claim": "Revenue approximately 27 billion USD in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Net profit margin approximately 18 to 20 percent", "source": "annual report"},
+    {"category": "financial", "claim": "No net debt; cash-positive balance sheet", "source": "company filings"},
+    {"category": "financial", "claim": "Revenue growth slowed to low single digits in FY2024", "source": "quarterly results"},
+    {"category": "financial", "claim": "Consistent share buyback program executed annually", "source": "company announcements"},
+    {"category": "market", "claim": "Second largest IT company in India by market capitalisation", "source": "NSE data"},
+    {"category": "market", "claim": "Major verticals include BFSI, manufacturing, and retail", "source": "annual report"},
+    {"category": "market", "claim": "Listed on both NSE and BSE exchanges", "source": "NSE/BSE"},
+    {"category": "people", "claim": "CEO is K Krithivasan appointed in April 2023", "source": "company announcement"},
+    {"category": "people", "claim": "Tata Group holds majority stake through Tata Sons", "source": "shareholder filings"},
+    {"category": "people", "claim": "Over 600000 employees globally", "source": "annual report"},
+    {"category": "financial", "claim": "Attrition rate approximately 12 percent in FY2024", "source": "quarterly results"},
+    {"category": "customer", "claim": "Serves clients across North America, Europe, and Asia Pacific", "source": "annual report"},
+    {"category": "financial", "claim": "Dividend yield approximately 1 percent", "source": "NSE data"}
+  ]
+}

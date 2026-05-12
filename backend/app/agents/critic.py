@@ -69,10 +69,16 @@ class CriticResult:
     flagged_agents: list[str]   # agents with at least one unsupported finding
 
 
+# Meta-fields produced by agents that are not findings — exclude from critic scoring.
+_EXCLUDED_FROM_CRITIC = {"confidence", "error"}
+
+
 def _build_critic_prompt(result: AgentResult) -> str:
-    # List the finding keys and values
+    # List the finding keys and values (skip meta-fields)
     finding_lines = []
     for key, val in result.findings.items():
+        if key in _EXCLUDED_FROM_CRITIC:
+            continue
         val_str = json.dumps(val) if isinstance(val, (list, dict)) else str(val)
         finding_lines.append(f"  {key}: {val_str[:250]}")
 
@@ -89,7 +95,7 @@ def _build_critic_prompt(result: AgentResult) -> str:
                 v = v[:200] + "..."
             evidence_lines.append(f"    {k}: {v}")
 
-    finding_keys = list(result.findings.keys())
+    finding_keys = [k for k in result.findings.keys() if k not in _EXCLUDED_FROM_CRITIC]
 
     return (
         f"Review the '{result.agent_name}' agent's findings against the evidence.\n\n"
@@ -129,9 +135,10 @@ async def run_critic(results: list[AgentResult]) -> CriticResult:
     Args:
         results: Successful AgentResults from all research agents.
     """
-    logger.info("critic_start", agent_count=len(results))
+    eligible = [r for r in results if not r.skip_critic]
+    logger.info("critic_start", agent_count=len(eligible), skipped=len(results) - len(eligible))
 
-    scored = await asyncio.gather(*[_score_one(r) for r in results])
+    scored = await asyncio.gather(*[_score_one(r) for r in eligible])
     valid: list[AgentCriticOutput] = [s for s in scored if s is not None]
 
     total = sum(

@@ -1,0 +1,20 @@
+{
+  "ticker": "SBIN.NS",
+  "name": "State Bank of India",
+  "claims": [
+    {"category": "financial", "claim": "Net profit approximately 67000 crore in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Return on equity approximately 17 to 18 percent", "source": "annual report"},
+    {"category": "financial", "claim": "GNPA ratio improving to approximately 2.4 percent", "source": "quarterly results"},
+    {"category": "financial", "claim": "Net interest margin approximately 3.2 to 3.5 percent", "source": "quarterly results"},
+    {"category": "financial", "claim": "CASA ratio approximately 42 to 45 percent", "source": "quarterly results"},
+    {"category": "market", "claim": "India's largest bank by total assets deposits and branches", "source": "RBI data"},
+    {"category": "market", "claim": "Government of India holds over 57 percent stake", "source": "shareholder filings"},
+    {"category": "market", "claim": "Listed on NSE and BSE exchanges", "source": "NSE/BSE"},
+    {"category": "people", "claim": "Chairman is Dinesh Kumar Khara", "source": "company website"},
+    {"category": "people", "claim": "Over 200000 employees making it one of India's largest employers", "source": "annual report"},
+    {"category": "customer", "claim": "Operates over 22000 branches and 60000 ATMs across India", "source": "annual report"},
+    {"category": "financial", "claim": "Subsidiaries include SBI Life SBI Cards and SBI Mutual Fund", "source": "company structure"},
+    {"category": "market", "claim": "Competes with private sector banks HDFC Bank and ICICI Bank for retail deposits", "source": "industry analysis"},
+    {"category": "financial", "claim": "Capital adequacy ratio meeting Basel III requirements", "source": "annual report"}
+  ]
+}

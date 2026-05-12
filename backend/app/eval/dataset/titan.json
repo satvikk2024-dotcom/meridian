@@ -1,0 +1,20 @@
+{
+  "ticker": "TITAN.NS",
+  "name": "Titan Company",
+  "claims": [
+    {"category": "financial", "claim": "Revenue approximately 50000 crore in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Jewellery segment contributes over 85 percent of revenue via Tanishq brand", "source": "annual report"},
+    {"category": "financial", "claim": "Watches and wearables segment contributes smaller but growing share", "source": "annual report"},
+    {"category": "financial", "claim": "Eyewear segment through Titan Eye Plus stores growing", "source": "annual report"},
+    {"category": "financial", "claim": "EBIT margins in jewellery approximately 11 to 12 percent", "source": "quarterly results"},
+    {"category": "market", "claim": "Largest listed jewellery retailer in India by revenue", "source": "industry data"},
+    {"category": "market", "claim": "Tata Group holds majority stake through Tata Sons", "source": "shareholder filings"},
+    {"category": "market", "claim": "Listed on NSE and BSE exchanges", "source": "NSE/BSE"},
+    {"category": "people", "claim": "CEO is C K Venkataraman", "source": "company website"},
+    {"category": "people", "claim": "Company headquartered in Bengaluru Karnataka", "source": "company website"},
+    {"category": "customer", "claim": "Tanishq brand targets middle and upper middle class wedding jewellery buyers", "source": "marketing analysis"},
+    {"category": "financial", "claim": "Gold price fluctuations impact both revenue and margins significantly", "source": "analyst reports"},
+    {"category": "market", "claim": "Competing with unorganised local jewellers who dominate most of market", "source": "industry analysis"},
+    {"category": "financial", "claim": "International business in Middle East and Southeast Asia growing", "source": "annual report"}
+  ]
+}

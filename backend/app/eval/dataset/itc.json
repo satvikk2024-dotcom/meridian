@@ -1,0 +1,20 @@
+{
+  "ticker": "ITC.NS",
+  "name": "ITC",
+  "claims": [
+    {"category": "financial", "claim": "Cigarettes segment remains largest revenue contributor", "source": "annual report"},
+    {"category": "financial", "claim": "FMCG business growing with brands like Sunfeast and Bingo", "source": "annual report"},
+    {"category": "financial", "claim": "Dividend yield historically 3 to 4 percent", "source": "NSE data"},
+    {"category": "financial", "claim": "Hotels business demerger announced as separate entity", "source": "company announcement"},
+    {"category": "financial", "claim": "P/E ratio approximately 20 to 25 times earnings", "source": "market data"},
+    {"category": "market", "claim": "One of India's largest FMCG companies by market capitalisation", "source": "NSE data"},
+    {"category": "market", "claim": "British American Tobacco holds significant stake in ITC", "source": "shareholder filings"},
+    {"category": "market", "claim": "Listed on NSE and BSE exchanges", "source": "NSE/BSE"},
+    {"category": "people", "claim": "CEO and Managing Director is Sanjiv Puri", "source": "company website"},
+    {"category": "people", "claim": "ITC is headquartered in Kolkata West Bengal", "source": "company website"},
+    {"category": "customer", "claim": "Consumer products include food personal care and education stationery", "source": "annual report"},
+    {"category": "financial", "claim": "Agribusiness segment contributes to revenue through commodities and food products", "source": "annual report"},
+    {"category": "financial", "claim": "High return on equity driven by asset-light cigarette business", "source": "analyst reports"},
+    {"category": "market", "claim": "Expanding in paper and packaging segment alongside FMCG", "source": "annual report"}
+  ]
+}

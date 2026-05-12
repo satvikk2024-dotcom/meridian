@@ -1,0 +1,20 @@
+{
+  "ticker": "ICICIBANK.NS",
+  "name": "ICICI Bank",
+  "claims": [
+    {"category": "financial", "claim": "Net profit approximately 44000 crore in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Net interest margin approximately 4.5 percent", "source": "quarterly results"},
+    {"category": "financial", "claim": "GNPA ratio improving to approximately 2.2 percent", "source": "quarterly results"},
+    {"category": "financial", "claim": "Return on equity approximately 18 percent", "source": "annual report"},
+    {"category": "financial", "claim": "Strong growth in retail and mortgage lending segments", "source": "quarterly results"},
+    {"category": "market", "claim": "Second largest private sector bank in India by market capitalisation", "source": "NSE data"},
+    {"category": "market", "claim": "Listed on NSE BSE and New York Stock Exchange as ADR", "source": "exchange filings"},
+    {"category": "market", "claim": "Competes primarily with HDFC Bank Kotak Mahindra Bank and Axis Bank", "source": "industry analysis"},
+    {"category": "people", "claim": "CEO is Sandeep Bakhshi", "source": "company website"},
+    {"category": "people", "claim": "Chanda Kochhar was a previous CEO who resigned amid controversy", "source": "public records"},
+    {"category": "financial", "claim": "CASA ratio improving reflecting stronger low-cost deposits", "source": "quarterly results"},
+    {"category": "customer", "claim": "Offers retail banking corporate banking insurance and investment products", "source": "annual report"},
+    {"category": "financial", "claim": "Capital adequacy ratio well above RBI regulatory minimums", "source": "annual report"},
+    {"category": "market", "claim": "Higher NIM than HDFC Bank reflecting retail-heavy loan mix", "source": "analyst reports"}
+  ]
+}

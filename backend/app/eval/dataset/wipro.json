@@ -1,0 +1,20 @@
+{
+  "ticker": "WIPRO.NS",
+  "name": "Wipro",
+  "claims": [
+    {"category": "financial", "claim": "Revenue approximately 11 billion USD in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Operating margin approximately 16 to 17 percent", "source": "quarterly results"},
+    {"category": "financial", "claim": "Revenue growth struggled in FY2024 compared to peers", "source": "quarterly results"},
+    {"category": "financial", "claim": "Completed acquisition of Capco in financial services consulting", "source": "company announcement"},
+    {"category": "market", "claim": "Third or fourth largest IT services company in India", "source": "industry data"},
+    {"category": "market", "claim": "Listed on NSE BSE and New York Stock Exchange as ADR", "source": "exchange filings"},
+    {"category": "market", "claim": "Competes with TCS Infosys HCL Technologies and global IT firms", "source": "industry analysis"},
+    {"category": "people", "claim": "CEO is Srinivas Pallia appointed in April 2024", "source": "company announcement"},
+    {"category": "people", "claim": "Azim Premji is founder and largest individual shareholder", "source": "shareholder filings"},
+    {"category": "people", "claim": "Azim Premji Foundation runs significant philanthropic activities", "source": "public records"},
+    {"category": "people", "claim": "Over 220000 employees globally", "source": "annual report"},
+    {"category": "customer", "claim": "Serves clients in banking technology manufacturing healthcare and energy verticals", "source": "annual report"},
+    {"category": "financial", "claim": "Lower margin profile compared to TCS and Infosys", "source": "analyst reports"},
+    {"category": "financial", "claim": "Historically higher attrition rate than TCS", "source": "industry benchmarks"}
+  ]
+}

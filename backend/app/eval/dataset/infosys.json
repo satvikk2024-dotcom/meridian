@@ -1,0 +1,20 @@
+{
+  "ticker": "INFY.NS",
+  "name": "Infosys",
+  "claims": [
+    {"category": "financial", "claim": "Revenue approximately 18 billion USD in FY2024", "source": "annual report"},
+    {"category": "financial", "claim": "Operating margin approximately 20 to 21 percent", "source": "quarterly results"},
+    {"category": "financial", "claim": "Revenue growth guidance 1 to 3 percent for FY2025", "source": "earnings call"},
+    {"category": "financial", "claim": "Strong BFSI vertical contributing over 30 percent of revenue", "source": "annual report"},
+    {"category": "financial", "claim": "Attrition rate approximately 12 percent in FY2024", "source": "quarterly results"},
+    {"category": "financial", "claim": "Cash-rich balance sheet with consistent dividend payments", "source": "annual report"},
+    {"category": "market", "claim": "Second or third largest IT services company in India", "source": "industry data"},
+    {"category": "market", "claim": "Listed on NSE BSE and NASDAQ as ADR", "source": "exchange filings"},
+    {"category": "people", "claim": "CEO is Salil Parekh appointed in January 2018", "source": "company announcement"},
+    {"category": "people", "claim": "Founded by Narayana Murthy and six co-founders in 1981", "source": "company history"},
+    {"category": "people", "claim": "Over 300000 employees globally", "source": "annual report"},
+    {"category": "customer", "claim": "Serves clients in BFSI energy resources manufacturing and retail verticals", "source": "annual report"},
+    {"category": "financial", "claim": "Regular share buyback programs to return cash to shareholders", "source": "company announcements"},
+    {"category": "market", "claim": "Competes with TCS Wipro HCL Technologies and global IT firms", "source": "industry analysis"}
+  ]
+}
