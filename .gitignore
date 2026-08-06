@@ -58,3 +58,8 @@ demos/*.mov
 
 # OS
 Thumbs.db
+
+# AI tooling
+.claude/
+.mcp.json
+.cursorrules
