@@ -24,6 +24,9 @@ The glossary (Part 20) defines every term used in the project. If a concept appe
 ---
 
 # Part 1 — Meridian At Three Levels Of Depth
+self-evaluation bias" or "in-context confirmation bias.
+over evaluation
+I have a critic agent that scores findings for hallucination — but it's important to be precise about what it actually does. It checks whether claims accurately summarize their cited evidence. It does NOT verify against the real world, and it doesn't cross-check across sources. There's a well-known limitation here: when both the agent and the critic see the same evidence, they tend to agree, because the claim was constructed from that evidence in the first place. So the critic mostly catches over-elaboration and obvious LLM errors. Real verification would require either cross-source corroboration or cross-agent contradiction detection — both of which I have as v2 work in my future doc. For v1, an imperfect confidence signal was better than no signal, and the architecture supports adding stronger verification layers without redesigning the pipeline.v
 
 ## 30-Second Version
 
