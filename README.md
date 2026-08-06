@@ -1,62 +1,42 @@
 # Meridian
 
-> Multi-agent due diligence system for Indian public companies (NSE / BSE).
-> Produces structured, citation-backed investment memos in minutes.
+Multi-agent due diligence system for NSE/BSE companies — cited memos in ~75s, evaluated against 135 verified ground-truth claims.
 
 Built by **Satvik Krishna**
 
 ---
 
-## What It Does
+## Evaluation
 
-Type a company name and ticker. Meridian spawns four specialised AI agents that gather evidence from public sources in parallel. A critic agent evaluates evidence quality. A synthesiser produces a structured memo where every claim is grounded in a cited source.
+Benchmarked across 9 NSE-listed companies, 15 verified ground-truth claims per company (135 total). Baseline: single-prompt LLM given the same inputs, no agents, no critic.
+
+| Metric | Meridian | Single-prompt baseline |
+|---|---|---|
+| Avg hallucination rate | 15% | not measured |
+| Ground-truth coverage | 79% | not measured |
+| Unique citations per run | 11 | 0 |
+| Financial agent hallucination | **0%** (all 9 cos.) | — |
+
+Per-agent hallucination varies with how much public data exists to ground against: financial (0%, hard numbers from yfinance) < market (20%) < people (29%, leadership/succession is thin on public sources). Full per-company breakdown and methodology: [`data/eval/report.md`](data/eval/report.md).
+
+---
+
+## What it does
+
+Generating investment memos with an LLM is easy. Generating ones you can trust is not — the default failure mode is confident, well-written hallucination with no way to trace which claim came from where.
+
+Meridian addresses this by keeping evidence and claims as separate, structured objects instead of letting the model free-write a memo from a blob of context. Four agents (financial, market, people, customer sentiment) each fetch their own evidence in parallel and produce findings tied to that evidence. A separate critic pass then checks every finding against the evidence the agent that produced it actually had — not against ground truth, but against faithfulness: did this claim come from something retrieved, or did the model add it? Findings that fail are flagged inline in the final memo rather than silently shipped.
+
+This moves the trust problem from "did the LLM sound confident" to "can I see the source for this specific line" — and it's checkable by anyone who clones the repo and reruns the benchmark.
 
 ```
 Financial Agent  ──┐
-Market Agent     ──┼──▶  Critic Agent  ──▶  Synthesiser  ──▶  Memo
-Leadership Agent ──┤
+Market Agent     ──┼──▶  Critic Agent  ──▶  Synthesizer  ──▶  Memo
+People Agent     ──┤
 Sentiment Agent  ──┘
 ```
 
-Live progress streams to the browser via Server-Sent Events — you watch each agent complete in real time.
-
----
-
-## Why It Is Interesting
-
-Most LLM applications are single-prompt wrappers. Meridian is an orchestration system with four distinct design choices worth discussing:
-
-| Choice | Rationale |
-|---|---|
-| Parallel agents via `asyncio` | 4 agents run concurrently; total wall time ≈ slowest agent, not sum |
-| Post-hoc critic, not inline | Batch scoring enables cross-agent analysis and independent re-runs |
-| Content-addressed disk cache | SHA-256 of prompt → zero re-spend on repeated queries; reproducible evals |
-| Citation-first architecture | Every finding stores source, label, value, URL — not embedded in text |
-
----
-
-## Benchmark Results
-
-Evaluated across 9 NSE-listed companies using 15 verified ground-truth claims per company.
-
-| Company | HAL% | Citations | GT Coverage |
-|---|---|---|---|
-| Reliance Industries | 6% | 11 | 67% |
-| TCS | 17% | 11 | 79% |
-| HDFC Bank | 17% | 11 | 79% |
-| Infosys | 12% | 11 | 64% |
-| ITC | 11% | 11 | 86% |
-| Wipro | 11% | 11 | 86% |
-| ICICI Bank | 17% | 11 | 86% |
-| Bharti Airtel | 22% | 11 | 79% |
-| HCL Technologies | 22% | 11 | 86% |
-| **Average** | **15%** | **11** | **79%** |
-
-**HAL%** — findings flagged as unsupported by the critic agent (lower is better).  
-**Citations** — unique grounded sources per run. Single-prompt baseline: 0.  
-**GT Coverage** — % of verified factual claims present in the output.
-
-Per-agent: Financial agent achieved **0% hallucination rate** across all 9 companies. People agent averaged 29%, expected given limited public data on leadership succession.
+Progress streams to the browser live via Server-Sent Events as each agent completes.
 
 ---
 
@@ -75,21 +55,62 @@ Browser
   │           Orchestrator               │
   │    asyncio.Queue fan-out / fan-in    │
   │                                      │
-  │  Financial  Market  Leadership  Sent │
-  │      │        │         │        │  │
-  │      └────────┴─────────┴────────┘  │
+  │  Financial  Market  People  Sentiment│
+  │      │        │       │        │    │
+  │      └────────┴───────┴────────┘    │
   │                   │                  │
   │            Critic Agent              │
   │          (batch LLM scoring)         │
   │                   │                  │
-  │            Synthesiser               │
+  │            Synthesizer               │
   └───────────────────────────────────── ┘
           │
-  LLM layer (Ollama local / Gemini Flash)
-  + SHA-256 disk cache
+  LLM layer (Ollama qwen2.5:7b, local)
+  + SHA-256 content-addressed disk cache
 ```
 
-Full design in [`docs/PLANNING.md`](docs/PLANNING.md). Architecture decisions in [`docs/decisions/`](docs/decisions/).
+The orchestrator starts all 4 agents concurrently and bridges their async tasks to a single SSE stream via an `asyncio.Queue` — each agent pushes progress events the moment it finishes, so total wall time tracks the slowest agent, not the sum. The critic and synthesizer only run after every agent has returned, since grounding checks need each agent's full evidence set to exist first.
+
+**Key decisions:**
+- [ADR-001: Async agents over Celery/task queue](docs/decisions/001-async-not-celery.md)
+- [ADR-002: SQLite over Postgres for MVP](docs/decisions/002-sqlite-not-postgres.md)
+- [ADR-003: SSE over WebSockets](docs/decisions/003-sse-not-websockets.md)
+- [ADR-004: Local Ollama over paid API](docs/decisions/004-local-ollama-no-paid-api.md)
+- [ADR-005: Indian market (NSE/BSE) over US](docs/decisions/005-indian-market-not-us.md)
+
+---
+
+## Setup
+
+**Prerequisites:** Python 3.11+, Node 20+, [Ollama](https://ollama.com) running locally.
+
+```bash
+ollama pull qwen2.5:7b
+
+# Backend
+cd backend
+python -m venv .venv && source .venv/bin/activate
+pip install -e .
+uvicorn app.main:app --reload --port 8000
+
+# Frontend (separate terminal)
+cd frontend
+npm install && npm run dev   # http://localhost:3000
+
+# Reproduce the benchmark
+cd backend
+python -m app.eval.benchmark   # writes data/eval/report.md
+```
+
+---
+
+## What this doesn't do
+
+- NSE/BSE only — no international markets, no multi-exchange support
+- No real-time data — yfinance quotes are delayed, not streamed
+- Local Ollama (qwen2.5:7b) sets the quality ceiling; a larger hosted model would likely lower the hallucination rate but costs money
+- The 135-claim ground-truth set was manually curated by one person, not independently verified by a third party
+- Customer sentiment agent is Reddit-only (r/IndiaInvestments, r/IndianStockMarket) — thin coverage for less-discussed companies
 
 ---
 
@@ -100,48 +121,14 @@ Full design in [`docs/PLANNING.md`](docs/PLANNING.md). Architecture decisions in
 | Backend | FastAPI · Python 3.11 · asyncio |
 | Frontend | Next.js 14 (App Router) · Tailwind CSS |
 | Streaming | Server-Sent Events |
-| LLM (dev) | Ollama `qwen2.5:7b` — local, free |
-| LLM (demo) | Gemini 2.0 Flash free tier |
+| LLM | Ollama `qwen2.5:7b` (local) |
+| Cache | SHA-256 content-addressed disk cache |
 | Data sources | yfinance · Wikipedia API · Reddit public JSON · Google News RSS |
-| Cache | Disk-based · SHA-256 content-addressed |
 | Validation | Pydantic v2 |
 
 ---
 
-## Local Setup
-
-**Prerequisites:** Python 3.11+, Node 20+, [Ollama](https://ollama.com) running locally.
-
-```bash
-# Pull the model once
-ollama pull qwen2.5:7b
-```
-
-**Backend:**
-```bash
-cd backend
-python -m venv .venv && source .venv/bin/activate
-pip install -e .
-uvicorn app.main:app --reload --port 8000
-```
-
-**Frontend:**
-```bash
-cd frontend
-npm install
-npm run dev        # http://localhost:3000
-```
-
-**Run the evaluation benchmark:**
-```bash
-cd backend
-python -m app.eval.benchmark
-# Results saved to data/eval/report.md
-```
-
----
-
-## Project Structure
+## Project structure
 
 ```
 meridian/
@@ -159,7 +146,7 @@ meridian/
 └── docs/
     ├── PLANNING.md      ← master architecture document
     ├── PHASE_TRACKING.md
-    └── decisions/       ← ADRs 001-004
+    └── decisions/       ← ADRs 001-005
 ```
 
 ---
